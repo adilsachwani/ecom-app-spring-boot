@@ -1,5 +1,6 @@
 package com.project.ecomapp.model;
 
+import com.project.ecomapp.constant.ProductStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,8 +31,9 @@ public class Product {
     @Column(name = "image")
     private String image;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private ProductStatus status;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

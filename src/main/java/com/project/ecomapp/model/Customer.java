@@ -1,5 +1,7 @@
 package com.project.ecomapp.model;
 
+import com.project.ecomapp.constant.Gender;
+import com.project.ecomapp.constant.RecordStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,14 +30,19 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private String gender;
+    private Gender gender;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "contact")
     private String contact;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private RecordStatus status;
 
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
