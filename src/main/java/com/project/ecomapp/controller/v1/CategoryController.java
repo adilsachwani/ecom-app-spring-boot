@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/categories")
+@RequestMapping(value = "/api/v1/products/categories")
 @Slf4j
 public class CategoryController {
 
