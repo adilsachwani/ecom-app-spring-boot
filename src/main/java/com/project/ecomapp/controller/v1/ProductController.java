@@ -21,7 +21,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<ProductDto>> getProductsByCategoryId(@PathVariable("categoryId") Long categoryId) throws Exception {
+    public ResponseEntity<List<ProductDto>> getProductsByCategoryId(@PathVariable("categoryId") Long categoryId) {
         log.debug("--- Starting getProductsByCategoryId() ---");
         List<ProductDto> products = productService.getProductsByCategoryId(categoryId);
         log.debug("--- Ending getProductsByCategoryId() ---");
@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("id") Long id) {
         log.debug("--- Starting getProductById() ---");
         ProductDto productDto = productService.getProductById(id);
         log.debug("--- Ending getProductById() ---");

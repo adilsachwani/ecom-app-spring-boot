@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<ProductDto> getProductsByCategoryId(Long categoryId) throws Exception;
+    List<ProductDto> getProductsByCategoryId(Long categoryId);
 
-    ProductDto getProductById(Long id) throws Exception;
+    ProductDto getProductById(Long id);
 
 }

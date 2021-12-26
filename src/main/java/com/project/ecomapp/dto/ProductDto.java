@@ -17,6 +17,6 @@ public class ProductDto {
     private Double price;
     private String image;
     private ProductStatus status;
-    private Category category;
+    private Long categoryId;
 
 }

@@ -1,6 +1,7 @@
 package com.project.ecomapp.service.impl;
 
 import com.project.ecomapp.dto.CategoryDto;
+import com.project.ecomapp.exception.ServiceException;
 import com.project.ecomapp.mapper.CategoryMapper;
 import com.project.ecomapp.model.Category;
 import com.project.ecomapp.repository.CategoryRepository;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.project.ecomapp.constant.ErrorCode.NOT_FOUND;
 
 @Service
 @Slf4j
@@ -30,10 +33,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDto getCategoryById(Long id) throws Exception {
+    public CategoryDto getCategoryById(Long id) {
         log.debug("--- Starting getCategoryById() ---");
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new Exception("Category not found"));
+                .orElseThrow(() -> new ServiceException(NOT_FOUND.getCode(), NOT_FOUND.getMessage(),
+                        String.format(NOT_FOUND.getDetailedMessage(), "Category Id: " + id)));
         log.debug("--- Ending getCategoryById() ---");
         return categoryMapper.toDto(category);
     }

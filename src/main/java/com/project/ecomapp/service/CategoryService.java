@@ -8,6 +8,6 @@ public interface CategoryService {
 
     List<CategoryDto> getAllCategories();
 
-    CategoryDto getCategoryById(Long id) throws Exception;
+    CategoryDto getCategoryById(Long id);
 
 }

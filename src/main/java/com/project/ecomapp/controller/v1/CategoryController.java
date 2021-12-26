@@ -21,7 +21,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         log.debug("--- Starting getAllCategories() ---");
         List<CategoryDto> categories = categoryService.getAllCategories();
         log.debug("--- Ending getAllCategories() ---");
@@ -29,7 +29,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable(name = "id") Long id) throws Exception {
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable(name = "id") Long id) {
         log.debug("--- Starting getAllCategories() ---");
         CategoryDto categoryDto = categoryService.getCategoryById(id);
         log.debug("--- Ending getAllCategories() ---");
