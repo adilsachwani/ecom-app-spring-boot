@@ -27,7 +27,7 @@ public class Address {
     @Column(name = "latitude")
     private String latitude;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

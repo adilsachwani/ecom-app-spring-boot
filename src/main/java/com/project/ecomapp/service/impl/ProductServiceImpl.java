@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.project.ecomapp.constant.ErrorCode.NOT_FOUND;
+import static com.project.ecomapp.constant.ErrorCode.CATEGORY_NOT_FOUND;
+import static com.project.ecomapp.constant.ErrorCode.PRODUCT_NOT_FOUND;
 
 @Service
 @Slf4j
@@ -34,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> getProductsByCategoryId(Long categoryId) {
         log.debug("--- Starting getProductsByCategoryId() ---");
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ServiceException(NOT_FOUND.getCode(), NOT_FOUND.getMessage(),
-                        String.format(NOT_FOUND.getDetailedMessage(), "Category Id: " + categoryId)));
+                .orElseThrow(() -> new ServiceException(CATEGORY_NOT_FOUND.getCode(), CATEGORY_NOT_FOUND.getMessage(),
+                        String.format(CATEGORY_NOT_FOUND.getDetailedMessage(), categoryId)));
         List<Product> products = productRepository.findAllByCategoryAndStatus(category, ProductStatus.AVAILABLE);
         log.debug("--- Ending getProductsByCategoryId() ---");
         return productMapper.toListDto(products);
@@ -45,8 +46,8 @@ public class ProductServiceImpl implements ProductService {
     public ProductDto getProductById(Long id) {
         log.debug("--- Starting getProductById() ---");
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ServiceException(NOT_FOUND.getCode(), NOT_FOUND.getMessage(),
-                        String.format(NOT_FOUND.getDetailedMessage(), "Product Id: " + id)));
+                .orElseThrow(() -> new ServiceException(PRODUCT_NOT_FOUND.getCode(), PRODUCT_NOT_FOUND.getMessage(),
+                        String.format(PRODUCT_NOT_FOUND.getDetailedMessage(), id)));
         log.debug("--- Ending getProductById() ---");
         return  productMapper.toDto(product);
     }

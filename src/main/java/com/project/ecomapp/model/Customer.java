@@ -34,9 +34,6 @@ public class Customer {
     @Column(name = "gender")
     private Gender gender;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "contact")
     private String contact;
 
@@ -44,7 +41,12 @@ public class Customer {
     @Column(name = "status")
     private RecordStatus status;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
+
+    @PrePersist
+    private void onPersist(){
+        this.status = RecordStatus.ACTIVE;
+    }
 
 }

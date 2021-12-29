@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.project.ecomapp.constant.ErrorCode.NOT_FOUND;
+import static com.project.ecomapp.constant.ErrorCode.CATEGORY_NOT_FOUND;
 
 @Service
 @Slf4j
@@ -36,8 +36,8 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto getCategoryById(Long id) {
         log.debug("--- Starting getCategoryById() ---");
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new ServiceException(NOT_FOUND.getCode(), NOT_FOUND.getMessage(),
-                        String.format(NOT_FOUND.getDetailedMessage(), "Category Id: " + id)));
+                .orElseThrow(() -> new ServiceException(CATEGORY_NOT_FOUND.getCode(), CATEGORY_NOT_FOUND.getMessage(),
+                        String.format(CATEGORY_NOT_FOUND.getDetailedMessage(), id)));
         log.debug("--- Ending getCategoryById() ---");
         return categoryMapper.toDto(category);
     }
