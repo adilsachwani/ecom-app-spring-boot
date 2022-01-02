@@ -1,7 +1,6 @@
 package com.project.ecomapp.dto;
 
 import com.project.ecomapp.constant.Gender;
-import com.project.ecomapp.model.Address;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

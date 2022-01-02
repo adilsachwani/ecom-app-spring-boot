@@ -13,4 +13,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     boolean existsByContact(String contact);
 
+    boolean existsByCustomerCode(String customerCode);
+
 }

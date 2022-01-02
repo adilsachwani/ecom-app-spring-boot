@@ -24,11 +24,16 @@ public class Order {
     @Column(name = "status")
     private OrderStatus status;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderDetails> details;
+
+    @PrePersist
+    private void onPersist(){
+        this.status = OrderStatus.ONGOING;
+    }
 
 }
