@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/api/v1/customers")
 @Slf4j
@@ -25,7 +27,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponseDto> getCustomerByCustomerCode(@RequestBody CustomerRequestDto customerRequestDto){
+    public ResponseEntity<CustomerResponseDto> registerCustomer(@Valid @RequestBody CustomerRequestDto customerRequestDto){
         log.debug("--- Starting registerCustomer() ---");
         CustomerResponseDto customerResponseDto = customerService.registerCustomer(customerRequestDto);
         log.debug("--- Starting registerCustomer() ---");

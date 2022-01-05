@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -15,7 +17,10 @@ import java.util.List;
 @Builder
 public class OrderRequestDto {
 
+    @NotNull(message = "customer id cannot be null")
     private Long customerId;
+
+    @NotEmpty(message = "order details must be supplied")
     private List<OrderDetailsRequestDto> details;
 
 }
