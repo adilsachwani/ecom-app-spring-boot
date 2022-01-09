@@ -3,7 +3,6 @@ package com.project.ecomapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "addresses")
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Address extends BaseEntity {
+public class Address extends TimestampEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +30,5 @@ public class Address extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @PrePersist
-    private void onPersist(){
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void onUpdate(){
-        this.updatedAt = LocalDateTime.now();
-    }
 
 }

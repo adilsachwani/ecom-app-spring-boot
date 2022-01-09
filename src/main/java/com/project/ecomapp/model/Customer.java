@@ -5,7 +5,6 @@ import com.project.ecomapp.constant.RecordStatus;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Customer extends BaseEntity {
+public class Customer extends TimestampEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,12 +47,6 @@ public class Customer extends BaseEntity {
     @PrePersist
     private void onPersist(){
         this.status = RecordStatus.ACTIVE;
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void onUpdate(){
-        this.updatedAt = LocalDateTime.now();
     }
 
 }

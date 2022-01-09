@@ -3,7 +3,6 @@ package com.project.ecomapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "categories")
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Category extends BaseEntity {
+public class Category extends TimestampEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +23,5 @@ public class Category extends BaseEntity {
 
     @Column(name = "description")
     private String description;
-
-    @PrePersist
-    private void onPersist(){
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    private void onUpdate(){
-        this.updatedAt = LocalDateTime.now();
-    }
 
 }
