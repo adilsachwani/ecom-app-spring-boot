@@ -35,4 +35,14 @@ public class EcomExceptionHandler {
         return new ResponseEntity<>(errorDtoList, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDto> handleException(Exception ex){
+       ErrorDto errorDto = ErrorDto.builder()
+               .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+               .message(HttpStatus.INTERNAL_SERVER_ERROR.toString())
+               .detailedMessage(ex.getMessage())
+               .build();
+        return new ResponseEntity<>(errorDto, HttpStatus.valueOf(errorDto.getCode()));
+    }
+
 }
